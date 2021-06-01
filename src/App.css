@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.box {
+  background: yellow;
+  margin: 10px;
+  /* width: 200px !important;
+  height: 200px !important; */
+}
+
+.layout {
+  background: blue;
+  width: 100vw;
+}
