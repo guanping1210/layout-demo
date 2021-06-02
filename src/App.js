@@ -1,5 +1,6 @@
 import './App.css';
 import GridLayout, { Responsive as ResponsiveGridLayout } from 'react-grid-layout'
+import ChartDemo from './chart.jsx'
 
 function App() {
   // layout应被定义为一个数组，数组中每一项是一个对象，通过配置对象中的相关属性的值来实现相应的布局和设置
@@ -14,8 +15,8 @@ function App() {
 
   // 1-5的布局
   const  position = [
-    {i: 'a', x: 0, y: 0, w: 1, h: 1, static: true},
-    {i: 'b', x: 1, y: 0, w: 1, h: 1, static: true},
+    {i: 'a', x: 0, y: 0, w: 1, h: 1, static: false},
+    {i: 'b', x: 1, y: 0, w: 1, h: 1, static: false},
     {i: 'c', x: 0, y: 1, w: 1, h: 1, static: true },
     {i: 'd', x: 1, y: 1, w: 1, h: 1, static: true },
     {i: 'e', x: 0, y: 2, w: 1, h: 1, static: true }
@@ -36,6 +37,7 @@ function App() {
           ['a', 'b', 'c', 'd', 'e'].map((item, index) => {
             return <div key={item} className="box" data-grid={position[index]}>
                 {item}-{index}
+                {index === 0 ? <ChartDemo /> : ''}
             </div>
           })
         }
