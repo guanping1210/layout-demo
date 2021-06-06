@@ -1,6 +1,8 @@
 import './App.css';
 import GridLayout, { Responsive as ResponsiveGridLayout } from 'react-grid-layout'
 import ChartDemo from './chart.jsx'
+import { Progress } from 'antd'
+import 'antd/dist/antd.min.css'
 
 function App() {
   // layout应被定义为一个数组，数组中每一项是一个对象，通过配置对象中的相关属性的值来实现相应的布局和设置
@@ -24,6 +26,25 @@ function App() {
 
   return (
     <div className="App">
+      <Progress percent={60} strokeColor={{
+        from: 'yellow',
+        to: 'blue',
+      }} success={{ percent: 30,  strokeColor: 'yellow'}} trailColor={'red'}/>
+      <div>
+        <Progress />
+      </div>
+      <h4>demo 进度条</h4>
+      <div>
+        <div className="custom-progress">
+          <div className="custom-all"></div>
+          <div className="custom-success"></div>
+          <div className="arrow">
+            <span>累计损伤</span>
+            <span>|</span>
+            <span>剩余寿命</span>
+          </div>
+        </div>
+      </div>
       <h4>响应式布局, 定位的布局只能写在子元素中，写在layout中不起作用</h4>
       <ResponsiveGridLayout 
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}

@@ -13,6 +13,48 @@
   }
 }
 
+.custom-progress {
+  background: #fff;
+  height: 20px;
+  width: 100;
+  padding: 2px;
+  border: solid 2px #ccc;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.custom-all {
+  height: 100%;
+  width: 100%;
+  background: green;
+
+}
+
+.custom-success {
+  width: 25%;
+  height: 100%;
+  background: yellow;
+  z-index: 3;
+  margin-top: -12px;
+}
+
+.arrow {
+  left: 25%;
+  margin-top: -35px;
+  position: absolute;
+  margin-left: -56px;
+}
+
+.arrow > span:nth-child(2) {
+  position: absolute;
+  margin-top: 16px;
+  width: 6px;
+  background: #ccc;
+  color: #ccc;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
