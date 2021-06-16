@@ -1,31 +1,63 @@
 import './App.css';
+import { useState, useEffect } from 'react'
 import GridLayout, { Responsive as ResponsiveGridLayout } from 'react-grid-layout'
 import ChartDemo from './chart.jsx'
 import { Progress } from 'antd'
 import 'antd/dist/antd.min.css'
+import music from './warning.wav'
 
 function App() {
-  // layout应被定义为一个数组，数组中每一项是一个对象，通过配置对象中的相关属性的值来实现相应的布局和设置
-  /**
-   * static  固定，不可拖放
-   */
-  const layout = [
-    {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
-    {i: 'b', x: 1, y: 0, w: 3, h: 2, static: true},
-    {i: 'c', x: 4, y: 0, w: 1, h: 2, static: true }
-  ];
+  const [count, setCount] = useState(0)
+  let timer = null
 
-  // 1-5的布局
-  const  position = [
-    {i: 'a', x: 0, y: 0, w: 1, h: 1, static: false},
-    {i: 'b', x: 1, y: 0, w: 1, h: 1, static: false},
-    {i: 'c', x: 0, y: 1, w: 1, h: 1, static: true },
-    {i: 'd', x: 1, y: 1, w: 1, h: 1, static: true },
-    {i: 'e', x: 0, y: 2, w: 1, h: 1, static: true }
-  ]
+  // 监听检测一条记录是否播放完毕
+  useEffect(() => {
+    // 18秒循环一次
+    if(count === 0) {
+      clearInterval(timer)
+      return 
+    }
+
+    if(count === 1) {
+      play()
+    }
+
+    timer = setInterval(() => {
+      console.log('-----', document.getElementById('audio').ended, count)
+      if(document.getElementById('audio').ended && count !== 0) {
+        // 上一次播放完毕，减少一次，并重新开启播放
+        console.log('-----', '播放完毕')
+        setCount(count - 1)
+        if(count - 1 > 0) {
+          play()
+        }
+      }
+    }, 1000)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [count])
+
+  const play = () => {
+    document.getElementById('audio').play()
+  }
+
+  const pause = () => {
+    document.getElementById('audio').pause()
+  }
 
   return (
     <div className="App">
+      <h4>本地音乐播放</h4>
+      <div>
+        <button onClick={() => setCount(count + 1)}>
+          点我播放N次，点击一次添加一次播放
+        </button>
+        <button onClick={() => { play()}}>点击我播放</button>
+        <button onClick={() => { pause()}}>点击我暂停</button>
+        <audio id="audio" src={music} controls="controls" />
+      </div>
       <Progress percent={60} strokeColor={{
         from: 'yellow',
         to: 'blue',
@@ -139,4 +171,22 @@ export default App;
 /**
  * 可以定义layouts, 也可以在子元素中用data-grid来定位元素
  */
+  // layout应被定义为一个数组，数组中每一项是一个对象，通过配置对象中的相关属性的值来实现相应的布局和设置
+  /**
+   * static  固定，不可拖放
+   */
+  const layout = [
+    {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
+    {i: 'b', x: 1, y: 0, w: 3, h: 2, static: true},
+    {i: 'c', x: 4, y: 0, w: 1, h: 2, static: true }
+  ];
+
+  // 1-5的布局
+  const  position = [
+    {i: 'a', x: 0, y: 0, w: 1, h: 1, static: false},
+    {i: 'b', x: 1, y: 0, w: 1, h: 1, static: false},
+    {i: 'c', x: 0, y: 1, w: 1, h: 1, static: true },
+    {i: 'd', x: 1, y: 1, w: 1, h: 1, static: true },
+    {i: 'e', x: 0, y: 2, w: 1, h: 1, static: true }
+  ]
 
