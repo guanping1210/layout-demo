@@ -5,6 +5,8 @@ import ChartDemo from './chart.jsx'
 import { Progress } from 'antd'
 import 'antd/dist/antd.min.css'
 import music from './warning.wav'
+import TreeMenu from './Tree'
+import Transfer from './Transfer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -49,7 +51,18 @@ function App() {
 
   return (
     <div className="App">
-      <h4>本地音乐播放</h4>
+      <div style={{ display: 'flex'}}>
+      <div>
+        <h3>穿梭框</h3>
+        <Transfer />
+      </div>
+      <div style={{ marginLeft: '50px'}}>
+        <h3>树状菜单</h3>
+      <TreeMenu />
+
+        </div>
+      </div>
+      {/* <h4>本地音乐播放</h4>
       <div>
         <button onClick={() => setCount(count + 1)}>
           点我播放N次，点击一次添加一次播放
@@ -94,38 +107,10 @@ function App() {
             </div>
           })
         }
-      {/* <div 
-          key="a" 
-          className="box" 
-          data-grid={{x: 0, y: 0, w: 1, h: 1, static: true}}
-        >AAAAAAAAA</div>
-        <div 
-          key="b" 
-          className="box" 
-          data-grid={{x: 1, y: 0, w: 1, h: 1,static: true}}
-        >BBBBBBB</div>
-        <div 
-          key="c" 
-          className="box" 
-          style={{
-            background: 'red',
-          }}
-          data-grid={{x: 0, y: 1, w: 1,h: 1, static: true}}
-        >CCCCCCC</div>
-        <div 
-          key="d" 
-          className="box" 
-          data-grid={{x: 1, y: 1, w: 1,h: 1, static: true}}
-        >DDDDDDD</div>
-        <div 
-          key="e" 
-          className="box" 
-          data-grid={{x: 0, y: 2, w: 1,h: 1, static: true}}
-        >EEEEEEEEEEEEEEE</div> */}
-      </ResponsiveGridLayout>
+      </ResponsiveGridLayout> */}
 
       <h4>grid-layout-demo</h4>
-      <GridLayout 
+      {/* <GridLayout 
         className="layout" 
         // TODO 布局
         layout={position} 
@@ -136,12 +121,10 @@ function App() {
         <div 
           key="a" 
           className="box" 
-          // data-grid={{x: 0, y: 0, w: 1, h: 1, static: true}}
         >AAAAAAAAA</div>
         <div 
           key="b" 
           className="box" 
-          // data-grid={{x: 1, y: 0, w: 1, h: 1,static: true}}
         >BBBBBBB</div>
         <div 
           key="c" 
@@ -149,19 +132,16 @@ function App() {
           style={{
             background: 'red',
           }}
-          // data-grid={{x: 0, y: 1, w: 1,h: 1, static: true}}
         >CCCCCCC</div>
         <div 
           key="d" 
           className="box" 
-          // data-grid={{x: 1, y: 1, w: 1,h: 1, static: true}}
         >DDDDDDD</div>
         <div 
           key="e" 
           className="box" 
-          // data-grid={{x: 0, y: 2, w: 1,h: 1, static: true}}
         >EEEEEEEEEEEEEEE</div>
-      </GridLayout>
+      </GridLayout> */}
     </div>
   );
 }
