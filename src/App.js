@@ -7,6 +7,7 @@ import 'antd/dist/antd.min.css'
 import music from './warning.wav'
 import TreeMenu from './Tree'
 import Transfer from './Transfer'
+import UploadList from './Upload'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -51,7 +52,9 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ display: 'flex'}}>
+      <h3>文件批量上传</h3>
+      <UploadList />
+      {/* <div style={{ display: 'flex'}}>
       <div>
         <h3>穿梭框</h3>
         <Transfer />
@@ -61,7 +64,7 @@ function App() {
       <TreeMenu />
 
         </div>
-      </div>
+      </div> */}
       {/* <h4>本地音乐播放</h4>
       <div>
         <button onClick={() => setCount(count + 1)}>
@@ -109,7 +112,7 @@ function App() {
         }
       </ResponsiveGridLayout> */}
 
-      <h4>grid-layout-demo</h4>
+      {/* <h4>grid-layout-demo</h4> */}
       {/* <GridLayout 
         className="layout" 
         // TODO 布局
