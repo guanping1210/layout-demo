@@ -8,6 +8,7 @@ import music from './warning.wav'
 import TreeMenu from './Tree'
 import Transfer from './Transfer'
 import UploadList from './Upload'
+import PicturesWall from './LogoUpload'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <div className="App">
+      <PicturesWall />
       <h3>文件批量上传</h3>
       <UploadList />
       {/* <div style={{ display: 'flex'}}>

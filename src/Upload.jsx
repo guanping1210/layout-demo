@@ -8,13 +8,18 @@ const UploadList = () => {
   const [fileList, setFileList] = useState([])
   const props = {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    customRequest: () => {},
+    customRequest: (options) => {
+      Promise.resolve(res => {
+        options.onProgress({ percent: 100})
+        options.onSuccess(res, options.file)
+      })
+    },
     beforeUpload: (file, files) => {
       // console.log(5555, files)
 
       setFileList(files)
 
-      return Promise.resolve()
+      return false
     }
   }
 
@@ -33,7 +38,7 @@ const UploadList = () => {
     const res = await fetch('https://www.mocky.io/v2/5cc8019d300000980a055e76', { method: 'POST', body: formData }).then(res => res.json)
   }
 
-  return <><Upload {...props} directory>
+  return <><Upload {...props}>
   <Button icon={<UploadOutlined />}>Upload Directory</Button>
 </Upload>
 
