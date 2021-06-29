@@ -127,7 +127,7 @@
   top: 1px;
   cursor: pointer;
   z-index: 999;
-  display:none;
+  /* display:none; */
 }
 .react-grid-item{
   border: 1px solid #ececec;

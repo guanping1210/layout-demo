@@ -3,3 +3,21 @@
   /* flex-direction: column; */
   flex-direction: row;
 }
+
+.operation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #ccc;
+}
+
+.edit {
+  width: 40px;
+  background: red;
+  height: 30px;
+  background: #ccc;
+  position: absolute;
+  z-index: 999999;
+  cursor: pointer;
+}

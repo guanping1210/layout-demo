@@ -9,13 +9,16 @@ import { getBarChart, getLineChart, getPieChart } from "./chart.js";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const { Header, Content } = Layout;
 const defaultProps = {
-  cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+  cols: { lg: 8, md: 8, sm: 4, xs: 4, xxs: 4 },
   rowHeight: 100,
 }
+
 const DragLayout = (props) => {
   const [layouts, setLayouts] = useState(defaultProps)
   const [widgets, setWidgets] = useState([])
-  const [cols, setCols] = useState()
+  const [edit, setEdit] = useState(null)
+  console.log('kkkk------', edit)
+
   const generateDOM = () => {
     return _.map(widgets, (l, i) => {
       let option;
@@ -36,7 +39,10 @@ const DragLayout = (props) => {
       )
       return (
         <div key={l.i} data-grid={l}>
-          <span className='remove' onClick={() => onRemoveItem(i)}>x</span>
+          <div className="operation" style={{ background: '#ccc'}}>
+            <span className="edit" onClick={() => setEdit(l)} style={{ zIndex: '999'}}>编辑</span>
+            <span className='remove' onClick={() => onRemoveItem(i)}>x</span>
+          </div>
           {component}
         </div>
       );
@@ -45,14 +51,12 @@ const DragLayout = (props) => {
 
   const addChart = (type) => {
     const addItem = {
-      x: (widgets.length * 2) % (cols || 8),
+      x: (widgets.length * 2) % (8),
       y:  Infinity, // puts it at the bottom
       w: 2,
       h: 2,
       i: new Date().getTime().toString(),
     };
-
-    console.log('22222', addItem)
 
     setWidgets([...widgets, {
       ...addItem,
@@ -62,7 +66,7 @@ const DragLayout = (props) => {
 
   const onRemoveItem = (i) => {
     setWidgets(widgets.filter((item, index) => index != i))
-
+    setEdit(null)
   }
 
   const onLayoutChange = (layout, layouts) => {
@@ -78,8 +82,8 @@ const DragLayout = (props) => {
         <Button type="primary" style={{ 'marginRight': '7px' }} onClick={() => addChart('line')}>添加折线图</Button>
         <Button type="primary" style={{ 'marginRight': '7px' }} onClick={() => addChart('pie')}>添加饼图</Button>
       </Header>
-      <Content>
-        <div style={{ background: '#fff', padding: 20, minHeight: 800, minWidth: 800 }}>
+      <Content style={{ flex: 1}}>
+        <div style={{ background: '#fff', padding: 20, minHeight: 800, minWidth: 800, maxWidth: `calc(100vw - ${edit ? 300 : 20}px)` }}>
           <ResponsiveReactGridLayout
             className="layout"
             {...props}
@@ -92,9 +96,9 @@ const DragLayout = (props) => {
           </ResponsiveReactGridLayout>
         </div>
       </Content>
-      <div style={{ width: '200px', background: '#001529', padding: 20, minHeight: 800 }}>
-        组件配置
-</div>
+      {edit ? <div style={{ width: '200px', background: '#001529', padding: 20, minHeight: 800 }}>
+        
+</div> : ''}
     </Layout>
   )
 }
